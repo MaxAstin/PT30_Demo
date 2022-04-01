@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GradleMigrationSettings" migrationVersion="1" />
+  <component name="GradleSettings">
+    <option name="linkedExternalProjectsSettings">
+      <GradleProjectSettings>
+        <option name="testRunner" value="GRADLE" />
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/EldBleLib-release" />
+            <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/hos-mobile-interface" />
+            <option value="$PROJECT_DIR$/pt-sdk-release" />
+            <option value="$PROJECT_DIR$/suntech-api" />
+            <option value="$PROJECT_DIR$/terminalio-debug" />
+            <option value="$PROJECT_DIR$/vehicle-interface" />
+            <option value="$PROJECT_DIR$/vtlib-release" />
+            <option value="$PROJECT_DIR$/wvalib-release" />
+          </set>
+        </option>
+        <option name="resolveModulePerSourceSet" value="false" />
+      </GradleProjectSettings>
+    </option>
+  </component>
+</project>

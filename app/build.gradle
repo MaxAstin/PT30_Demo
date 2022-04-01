@@ -1,0 +1,208 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+//    id 'com.google.gms.google-services'
+   // id 'com.google.firebase.firebase-perf'
+   // id 'com.google.firebase.crashlytics'
+    id 'kotlin-kapt'
+    id 'kotlinx-serialization'
+}
+
+android {
+    compileSdk 31
+
+    defaultConfig {
+        applicationId "eld.peaksoft.pt30_demo"
+        minSdk 21
+        targetSdk 31
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            multiDexEnabled true
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            matchingFallbacks = ['release']
+        }
+        enterprise {
+            // blah blah
+            matchingFallbacks = ['release']
+        }
+        debug {
+            // blah blah
+            matchingFallbacks = ['debug']
+        }
+    }
+    compileOptions {
+        coreLibraryDesugaringEnabled true
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    buildFeatures {
+        viewBinding true
+    }
+}
+
+configurations.all {
+    resolutionStrategy {
+        force "org.reactivestreams:reactive-streams:${v.reactiveStreamsVersion}"
+    }
+}
+
+dependencies {
+    // includes all jar files in libs directory
+    implementation fileTree(dir: 'libs', include: ['*.aar'])
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+//    implementation project(':vtlib-release')
+    implementation project(':EldBleLib-release')
+    implementation project(':hos-mobile-interface')
+   // implementation project(':suntech-api')
+   // implementation project(':terminalio-debug')
+    //implementation project(':vehicle-interface')
+    implementation project(':pt-sdk-release')
+    //implementation project(':wvalib-release')
+
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.1.5'
+
+// required here to avoid a warning complaining about the firebase or play services version not being specified.
+   // api "com.google.firebase:firebase-analytics-ktx:${v.firebaseAnalyticsVersion}"
+    // implementation "com.google.firebase:firebase-perf-ktx:${v.firebasePerfMonVersion}"
+
+    // for wvalib
+    implementation "com.squareup.okhttp:okhttp:${v.squareOkHttpVersion}"
+
+    // Required to avoid build error similar to "Duplicate class com.google.common.util.concurrent.ListenableFuture found in modules jetified-guava-26.0-android.jar (com.google.guava:guava:26.0-android) and jetified-listenablefuture-1.0.jar (com.google.guava:listenablefuture:1.0)"
+    // https://github.com/firebase/firebase-android-sdk/issues/1320#issuecomment-601159166
+    implementation "com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava"
+
+    // for pacific track sdk
+    implementation "no.nordicsemi.android:log:${v.nordicsemiLogVersion}"
+    implementation "no.nordicsemi.android.support.v18:scanner:${v.nordicsemiScannerVersion}"
+    implementation "no.nordicsemi.android:ble-common:${v.nordicsemiBleVersion}"
+    implementation "commons-net:commons-net:${v.commonsNetVersion}"
+    implementation "com.google.guava:guava:${v.guavaVersion}"
+
+
+    // OkHttp
+    implementation "com.squareup.okhttp3:okhttp:${v.okHttpVersion}"
+    implementation "com.squareup.okhttp3:logging-interceptor:${v.okHttpVersion}"
+    implementation "com.squareup.okio:okio:${v.okIoVersion}"
+
+    // androidx libraries
+    api "androidx.appcompat:appcompat:${v.androidXAppCompatVersion}"
+    implementation "androidx.multidex:multidex:${v.multidexVersion}"
+    implementation "androidx.work:work-runtime-ktx:${v.workVersion}"
+    implementation "androidx.work:work-gcm:${v.workVersion}"
+    implementation "androidx.core:core-ktx:${v.androidXCoreVersion}"
+    implementation "androidx.activity:activity-ktx:${v.androidXActivityVersion}"
+    implementation "androidx.fragment:fragment-ktx:${v.androidXFragmentVersion}"
+    implementation "androidx.sqlite:sqlite-ktx:${v.androidXSqliteVersion}"
+    implementation "androidx.cardview:cardview:${v.androidXVersion}"
+    implementation "androidx.gridlayout:gridlayout:${v.androidXVersion}"
+    implementation "androidx.preference:preference-ktx:${v.androidXPreferenceVersion}"
+    implementation "androidx.recyclerview:recyclerview:${v.androidXRecyclerViewVersion}"
+    implementation "androidx.transition:transition-ktx:${v.androidXTransitionVersion}"
+    implementation "androidx.constraintlayout:constraintlayout:${v.constraintLayoutVersion}"
+    implementation "androidx.exifinterface:exifinterface:${v.exifinterfaceVersion}"
+    api "com.google.android.material:material:${v.materialVersion}"
+
+    // architecture components
+    implementation "androidx.lifecycle:lifecycle-common-java8:${v.androidXLifecycleVersion}"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:${v.androidXLifecycleVersion}"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:${v.androidXLifecycleVersion}"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:${v.androidXLifecycleVersion}"
+    api "androidx.lifecycle:lifecycle-reactivestreams-ktx:${v.androidXLifecycleVersion}"
+
+    // room
+    implementation "androidx.room:room-runtime:${v.roomVersion}"
+    kapt "androidx.room:room-compiler:${v.roomVersion}"
+    // Kotlin Extensions and Coroutines support for Room
+    implementation "androidx.room:room-ktx:${v.roomVersion}"
+    testImplementation "androidx.room:room-testing:${v.roomVersion}"
+
+    // used for fancier floating button that shows more options when pressed.
+    implementation "com.github.clans:fab:${v.fabVersion}"
+
+    // google play services
+    implementation "com.google.android.gms:play-services-maps:${v.playServicesMapsVersion}"
+    implementation "com.google.android.gms:play-services-location:${v.playServicesLocationVersion}"
+    api "com.google.firebase:firebase-analytics-ktx:${v.firebaseAnalyticsVersion}"
+    api "com.google.firebase:firebase-messaging-ktx:${v.firebaseMessagingVersion}"
+    implementation("com.google.firebase:firebase-crashlytics-ktx:${v.firebaseCrashlyticsVersion}") {
+        transitive = true
+    }
+
+    api "com.google.code.gson:gson:${v.gsonVersion}"
+    implementation "joda-time:joda-time:${v.jodaTimeVersion}"
+    implementation "com.github.pires:obd-java-api:${v.obdJavaApiVersion}"
+    api "com.google.android.flexbox:flexbox:${v.flexBoxVersion}"
+    api "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${v.kotlinxVersion}"
+    implementation "org.jetbrains.kotlinx:kotlinx-datetime:${v.kotlinxDateTimeVersion}"
+    implementation 'co.touchlab:stately-common:1.2.0'
+
+    //coroutines
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:${v.kotlinCoroutinesVersion}"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:${v.kotlinCoroutinesVersion}"
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:${v.kotlinCoroutinesVersion}"
+
+    // serialization
+    implementation "org.jetbrains.kotlinx:kotlinx-serialization-json:${v.kotlinSerializationVersion}"
+
+    // Testing libraries
+    testImplementation "junit:junit:${v.junitVersion}"
+    testImplementation "org.junit.jupiter:junit-jupiter:$v.junitJupiterVersion"
+    testImplementation "org.mockito:mockito-core:${v.mockitoVersion}"
+    // Needed to mock certain classes
+    // https://stackoverflow.com/questions/14292863/how-to-mock-a-final-class-with-mockito/40018295#40018295
+    testImplementation "org.mockito:mockito-inline:${v.mockitoVersion}"
+    testImplementation "com.squareup.okhttp3:mockwebserver:${v.okHttpVersion}"
+
+
+    // Used to provide an implementation of the android logger for now
+    testImplementation "org.robolectric:robolectric:${v.robolectricVersion}"
+    // StriKt Assertion Library
+    testImplementation "io.strikt:strikt-core:0.31.0"
+
+    // Geospatial library
+    api 'com.vividsolutions:jts:1.13'
+
+    //ExpandableRecyclerView
+    implementation "com.thoughtbot:expandablerecyclerview:${v.expandableRecyclerviewVersion}"
+
+    //Truetime for Timing Compliance Malfunctions
+    implementation "com.github.instacart.truetime-android:library-extension-rx:${v.truetimeVersion}"
+
+    //Instrumented tests
+    androidTestImplementation "androidx.test.ext:junit:${v.androidXTestExtJUnitVersion}"
+
+    implementation "com.soywiz.korlibs.klock:klock-android:${v.klockVersion}"
+
+    // For PDF validation
+    implementation "com.tom-roush:pdfbox-android:${v.pdfBoxVersion}"
+
+    // grpc
+    implementation "io.grpc:grpc-core:${v.grpcVersion}"
+    implementation "io.grpc:grpc-api:${v.grpcVersion}"
+    implementation "io.grpc:grpc-netty-shaded:${v.grpcVersion}"
+    implementation "io.grpc:grpc-okhttp:${v.grpcVersion}"
+    implementation "io.grpc:grpc-protobuf-lite:${v.grpcVersion}"
+    implementation "io.grpc:grpc-stub:${v.grpcVersion}"
+
+    // gRPC uses these annotations
+    implementation 'javax.annotation:javax.annotation-api:1.3.2'
+
+    // Timber (logging)
+    api 'com.jakewharton.timber:timber:4.7.1'
+
+    // Coil implementation to abstract and optimize bitmap processing
+    implementation("io.coil-kt:coil-base:$v.coilVersion")
+}

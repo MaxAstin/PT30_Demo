@@ -1,0 +1,10 @@
+rootProject.name = "PT30_Demo"
+include ':app'
+include ':EldBleLib-release'
+include ':hos-mobile-interface'
+include ':pt-sdk-release'
+include ':suntech-api'
+include ':terminalio-debug'
+include ':vehicle-interface'
+include ':vtlib-release'
+include ':wvalib-release'

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/VBUS_ENG_RPM"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="20dp"
+        android:text="VBUS_ENG_RPM" />
+
+    <TextView
+        android:id="@+id/VBUS_ENG_TOTAL_HOURS"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="20dp"
+        android:text="VBUS_ENG_TOTAL_HOURS" />
+
+    <TextView
+        android:id="@+id/VBUS_LATITUDE"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="20dp"
+        android:text="VBUS_LATITUDE" />
+
+    <TextView
+        android:id="@+id/VBUS_LONGITUDE"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="20dp"
+        android:text="VBUS_LONGITUDE" />
+
+    <TextView
+        android:id="@+id/VBUS_ODOMETER_KM"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="20dp"
+        android:text="VBUS_ODOMETER_KM" />
+
+    <TextView
+        android:id="@+id/VBUS_VEHICLE_SPEED_KPH"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="20dp"
+        android:text="VBUS_VEHICLE_SPEED_KPH" />
+
+    <TextView
+        android:id="@+id/VBUS_TIMESTAMP"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="20dp"
+        android:text="VBUS_TIMESTAMP" />
+
+    <TextView
+        android:id="@+id/VBUS_VIN"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="20dp"
+        android:text="VBUS_VIN" />
+
+</LinearLayout>
