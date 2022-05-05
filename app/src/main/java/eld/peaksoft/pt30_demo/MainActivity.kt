@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity() {
 
     fun connectToPairedDevice(view: View?) {
         val intent = Intent(this, DeviceListActivity::class.java)
-        this.startActivity(intent)
+        this.startActivityForResult(intent, 1)
     }
 
     fun startBluetooth(view: View?) {
